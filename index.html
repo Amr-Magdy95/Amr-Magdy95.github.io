@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Home Page</title>
+    <link rel="stylesheet" href="./css/main.css">
+  </head>
+  <body>
+<!--START OF NAVBAR -->
+    <nav class="navbar">
+        <div>
+            <img src="./images/Logo.png" alt="" id="logo">
+        </div>
+        <ul>
+            <li >
+                <a href="./index.html" class="active" >Home</a>
+            </li>
+            <li>
+                <a href="./login.html" id="show-login">Login</a>
+            </li>
+            <li>
+                <a href="./register.html">Register</a>
+            </li>
+        </ul>
+    </nav>
+<!--END OF NAVBAR -->
+<!--START OF SLIDER -->
+<div id="slider">
+    <img id="1" src="./images/1.jpg" alt="">
+    <img id="2" src="./images/2.jpg" alt="">
+    <img id="3" src="./images/3.jpg" alt="">
+</div>
+
+
+<!--END OF SLIDER -->
+<!--START OF GALLERY -->
+    <div class='some-page-wrapper'>
+        <div class='row'>
+        <div class='column'>
+            <img src="./images/1.jpg" alt="" id="main-picture"/>
+        </div>
+        <div class='column thumb-container'>
+            <img src="./images/1.jpg" alt="" class="thumb-image">
+            <img src="./images/2.jpg" alt="" class="thumb-image">
+            <img src="./images/3.jpg" alt="" class="thumb-image">
+            <img src="./images/1.jpg" alt="" class="thumb-image">
+            <img src="./images/2.jpg" alt="" class="thumb-image">
+            <img src="./images/3.jpg" alt="" class="thumb-image"> 
+            <img src="./images/1.jpg" alt="" class="thumb-image">
+            <img src="./images/2.jpg" alt="" class="thumb-image">
+            <img src="./images/3.jpg" alt="" class="thumb-image">
+            <img src="./images/1.jpg" alt="" class="thumb-image">
+            <img src="./images/2.jpg" alt="" class="thumb-image">
+            <img src="./images/3.jpg" alt="" class="thumb-image">
+            
+            
+        </div>
+        </div>
+    </div>
+<!--END OF GALLERY -->
+    <div id="login-modal">
+        <div class="close-icon">
+            <span>Close </span>
+        </div>
+        <h2>Popup heading</h2>
+    </div>
+      <script src="./js/jquery-3.6.0.min.js"></script>
+      <script>
+          let sliderInt = 1;
+          let sliderNext = 2;
+          let loop;
+          $(document).ready( function(){
+              $("#slider img#1").fadeIn(300);
+              startSlider();
+          })
+      
+          function startSlider(){
+              let countImages = document.querySelectorAll("#slider img").length;
+              loop = setInterval(() => {
+                  $("#slider img").fadeOut(300);
+                  $("#slider img#" + sliderNext).fadeIn(300);
+                  sliderInt = sliderNext;
+                  sliderNext = (sliderNext + 1);
+                  if(sliderNext > countImages){ sliderNext = 1; sliderInt =1;} 
+              }, 6000);
+        var images =document.querySelectorAll(".thumb-container img");
+        console.log(images);
+        
+
+
+
+        $(".thumb-container img").on({
+            "mouseover": function(){
+                $(this).css({'cursor': 'pointer', "border-color": "red"});
+                console.log(this);
+            },
+            "mouseout": function(){
+                $(this).css({'cursor': "default", "border-color": 'grey'});
+            },
+            "click": function(){
+                var imgURL = $(this).attr('src');
+                $("#main-picture").fadeOut(500, function(){
+                    $(this).attr("src", imgURL);
+                }).fadeIn(500);
+            }
+        });
+
+      
+      
+          }
+
+
+      
+
+          </script>
+  </body>
+</html>
